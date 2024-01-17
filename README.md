@@ -1,21 +1,32 @@
-# VotingSystem Smart Contract
+# Voting System Smart Contract
 
-## Overview
+This Solidity smart contract, named VotingSystem, facilitates a basic voting system on the Ethereum blockchain. It allows individuals to cast their votes for a political party by providing their age and the corresponding party code.
 
-This Solidity smart contract, named VotingSystem, facilitates a voting system where users can cast votes for a political party. It includes basic error handling mechanisms using the `require` statement to ensure the voter's age is above 18 and the party code is a 4-digit number.
+## Features
+
+1. **Vote Functionality:** Users can cast their votes by calling the `vote` function, providing their age and the party code.
+
+2. **Age Verification:** The contract includes a requirement that the voter must be 18 years or older to cast a vote.
+
+3. **Party Code Validation:** The party code must be a 4-digit number between 1000 and 9999, ensuring a valid party selection.
+
+4. **Preventing Duplicate Votes:** The contract ensures that a voter can only cast one vote by maintaining a mapping of voted addresses.
+
+## Usage
+
+To use this contract:
+
+1. Deploy the contract to the Ethereum blockchain.
+2. Users can call the `vote` function with their age and party code to cast their votes.
 
 ## Smart Contract Details
 
 ### State Variables
 
-- `voteMap`: A mapping that associates each voter's address with the chosen party code.
+- `vote_party`: A mapping of addresses to the party code they voted for.
+- `voteMap`: A mapping to keep track of whether an address has already voted.
 
 ### Functions
 
-#### `vote(uint256 voterAge, uint256 partyCode)`
+- `vote(uint256 voterAge, uint256 partyCode)`: Allows a user to cast a vote for a political party. Requires the voter to be 18 years or older and prevents duplicate votes.
 
-Allows a user to cast a vote by providing their age and the party code. The function includes the following checks:
-
-- Uses `require` to ensure that the voter's age is greater than or equal to 18.
-- Uses an `if` statement to check if the party code is a 4-digit number. If not, the function reverts with an error message.
-- If all checks pass, the function records the vote by updating the `voteMap` for the sender's address.
